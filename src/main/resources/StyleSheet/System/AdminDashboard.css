@@ -1,0 +1,14 @@
+#btnDashboard,#btnStudent,#btnQrcode,#btnattend,#btnLogout{
+    -fx-background-color: #acadaf;
+    -fx-text-fill: #000000;
+}
+#btnDashboard:hover,#btnStudent:hover,#btnQrcode:hover,#btnattend:hover,#btnLogout:hover{
+    -fx-background-color: #9b9da1;
+    -fx-text-fill: #000000;
+    /*-fx-background-radius: 80%;*/
+}
+#btnDashboard:pressed,#btnStudent:pressed,#btnQrcode:pressed,#btnattend:pressed,#btnLogout:pressed{
+    -fx-background-color: #7d8288;
+    -fx-text-fill: #000000;
+    /*-fx-background-radius: 90%;*/
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="frame" prefHeight="700.0" prefWidth="985.0" style="-fx-background-color: #e5e5e6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.system.it.Controller.AdminDahboardController">
+   <children>
+      <AnchorPane fx:id="chartPane" layoutX="14.0" layoutY="191.0" prefHeight="320.0" prefWidth="933.0" style="-fx-background-color: #cbcbcd;">
+         <children>
+            <BarChart fx:id="bargraph" layoutX="17.0" layoutY="12.0" prefHeight="292.0" prefWidth="903.0" style="-fx-background-color: white;" stylesheets="@../../StyleSheet/System/archart.css">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="110.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Asstes/System/logo1.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

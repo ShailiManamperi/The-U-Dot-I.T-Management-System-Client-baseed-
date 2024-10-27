@@ -1,0 +1,26 @@
+CREATE DATABASE IF NOT EXISTS studentmanagement;
+USE studentmanagement;
+CREATE TABLE Students (
+    student_id VARCHAR(20) PRIMARY KEY ,
+    student_name VARCHAR(255) NOT NULL,
+    contact_number VARCHAR(10),
+    address VARCHAR(255),
+    school VARCHAR(255),
+    photo BLOB
+);
+CREATE TABLE Courses (
+    course_id VARCHAR(30) PRIMARY KEY,
+    course_name VARCHAR(50) ,
+    fees DOUBLE,
+    duration VARCHAR(20)
+);
+CREATE TABLE Student_Course (
+    student_id VARCHAR(20),
+    course_id VARCHAR(30),
+    status VARCHAR(20),
+    Qr BLOB,
+    CONSTRAINT FOREIGN KEY (student_id) REFERENCES Students (student_id)
+    			ON DELETE CASCADE ON UPDATE CASCADE,
+    	CONSTRAINT FOREIGN KEY (course_id) REFERENCES Courses (course_id)
+        			ON DELETE CASCADE ON UPDATE CASCADE
+);

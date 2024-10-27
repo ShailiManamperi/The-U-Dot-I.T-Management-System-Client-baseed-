@@ -1,0 +1,32 @@
+#frame,#background{
+    -fx-fill: linear-gradient(to bottom,#140c0c 20%, #000022 75%,#000000 100%);
+    -fx-background-color: linear-gradient(to bottom,#140c0c 20%, #000022 75%,#000000 100%);
+    -fx-border-radius: 50;
+    -fx-border-color: white;
+}
+#btnLogIn,#btnRegister{
+    -fx-background-color: linear-gradient(from 0% 10% to 95% 100%,#a4a4a8, #ffffff, #a4a4a8);
+    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+}
+#btnLogIn:hover,#btnRegister:hover{
+    -fx-background-color: linear-gradient(from 0% 10% to 95% 100%,#8a8a8f, #ffffff, #8a8a8f);    -fx-background-radius: 50;
+    -fx-border-radius: 50;
+}
+#btncreate,#btnlogin{
+    -fx-background-color: linear-gradient(from 0% 50% to 75% 100% , #ffffff, #707075,  #ffffff);
+    -fx-border-width: 1px;
+    -fx-border-color: #ecf0f1;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-text-fill: #27374D;
+
+}
+#btncreate:hover,#btnlogin:hover{
+    -fx-background-color: linear-gradient(from 0% 50% to 75% 100% ,#ffffff, #a4a4a8, #ffffff);    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-border-color: #ecf0f1;
+    -fx-text-fill: #34495e;
+
+}
