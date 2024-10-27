@@ -28,9 +28,11 @@ import lk.system.it.Dto.StudentDto;
 import lk.system.it.Dto.Student_CourseDto;
 import lk.system.it.Service.ServiceFactory;
 import lk.system.it.Service.ServiceTypes;
+import lk.system.it.Service.custom.AddStudentService;
 import lk.system.it.Service.custom.CourseService;
 import lk.system.it.Service.custom.StudentService;
 import lk.system.it.Service.custom.Student_CourseService;
+import org.bouncycastle.asn1.dvcs.ServiceType;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -49,27 +51,7 @@ public class StudentFrameController {
 
     public ImageView imgQr;
     public JFXButton btngenerate;
-    @FXML
-    private AnchorPane frame;
-
-    @FXML
-    private JFXTextField txtSearch;
-
-    @FXML
-    private ImageView imgsearch;
-
-    @FXML
-    private JFXButton btnAdd;
-
-    @FXML
-    private JFXButton btnUpdate;
-
-    @FXML
-    private JFXButton btnDelete;
-
-    @FXML
-    private JFXButton btnClear;
-
+    public ImageView imgNew;
     @FXML
     private JFXTextField txtStudid;
 
@@ -87,27 +69,8 @@ public class StudentFrameController {
 
     @FXML
     private JFXComboBox<String> cmbcourse;
-
-    @FXML
-    private JFXRadioButton rdbid;
-
-    @FXML
-    private JFXRadioButton rdbname;
-
-    @FXML
-    private JFXRadioButton rbcontact;
-
-    @FXML
-    private JFXButton btnNew;
-
-    @FXML
-    private Label lbltitle;
-
     @FXML
     private ImageView imgStud;
-
-    @FXML
-    private JFXButton btnupload;
 
     private byte[] imageBytes; // To store image data
     private byte[] QrBytes; // To store Qr data
@@ -115,11 +78,13 @@ public class StudentFrameController {
     public CourseService courseService;
     public StudentService studentService;
     public Student_CourseService studentCourseService;
+    public AddStudentService addStudentService;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         this.courseService = ServiceFactory.getInstance().getService(ServiceTypes.COURSE);
         this.studentService = ServiceFactory.getInstance().getService(ServiceTypes.STUDENT);
         this.studentCourseService = ServiceFactory.getInstance().getService(ServiceTypes.Student_Course);
+        this.addStudentService = ServiceFactory.getInstance().getService(ServiceTypes.ADDSTUDENT);
         loadCourseId();
     }
 
@@ -140,30 +105,24 @@ public class StudentFrameController {
 
     @FXML
     void addstudentOnAction(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Student Added Successfully!");
-        alert.show();
+        StudentDto studentDto = makeStudentObject();
+        Student_CourseDto studentCourseDto = makeStu_CourObject();
+        try {
+            boolean b = addStudentService.AddStudent(studentDto, studentCourseDto);
+            if (b){
+                clearAll();
+                new Alert(Alert.AlertType.CONFIRMATION,"Student added sucessfully", ButtonType.CLOSE).show();
+            }else {
+                new Alert(Alert.AlertType.ERROR,"Something went wrong.", ButtonType.CLOSE).show();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    @FXML
-    void UpdatestudentOnAction(ActionEvent event) {
-        // Update student logic here
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Student Updated Successfully!");
-        alert.show();
-    }
-
-    @FXML
-    void DeletestudentOnAction(ActionEvent event) {
-        // Delete student logic here
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Student Deleted Successfully!");
-        alert.show();
-    }
-
-    @FXML
-    void ClearstudentOnAction(ActionEvent event) {
-        // Clear all input fields
+    private void clearAll(){
         txtStudid.clear();
         txtstudename.clear();
         txtcontactno.clear();
@@ -172,9 +131,6 @@ public class StudentFrameController {
         cmbcourse.getSelectionModel().clearSelection();
         imgStud.setImage(null);
         imageBytes = null;
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Form Cleared!");
-        alert.show();
     }
 
     private StudentDto makeStudentObject(){
@@ -192,13 +148,41 @@ public class StudentFrameController {
         String status = "Not Done";
         return new Student_CourseDto(stud_id,cour_id,status,QrBytes);
     }
-    @FXML
-    void searchOnAction(ActionEvent event) {
-        // Search student logic here
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Search completed!");
-        alert.show();
-    }
+//    private String selectedtype() {
+//        String type = null;
+//        if (rdbid.isSelected()){
+//            type ="student_id";
+//        }if (rdbname.isSelected()){
+//            type = "student_name";
+//        }if (rbcontact.isSelected()){
+//            type = "contact_number";
+//        }
+//        return type;
+//    }
+//    @FXML
+//    void searchOnAction(ActionEvent event) {
+//        String selectedtype = selectedtype();
+//        if (selectedtype == null){
+//            new Alert(Alert.AlertType.WARNING,"Please select the type frist").show();
+//        }else{
+//            String search = txtSearch.getText();
+//            System.out.println(search);
+//
+//            selectedUser = employeeService.searchEmployee(search,selectedtype);
+//
+//            System.out.println(selectedUser);
+//            if (selectedUser == null){
+//                new Alert(Alert.AlertType.WARNING,"this type employee not founded!").show();
+//            }else {
+//                String type = selectedUser.getJob();
+//                salaryDTO = attendanceService.searchSalaryType(type);
+//                System.out.println(selectedUser.getEid());
+//                btnUpdate.setDisable(false);
+//                btnDelete.setDisable(false);
+//                fillData();
+//            }
+//        }
+//    }
 
     @FXML
     void newStudentidOnAction(ActionEvent event) {

@@ -35,7 +35,7 @@
                <graphic>
                   <ImageView fx:id="imgStuent" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Asstes/System/icons8-customer-50.png" />
+                        <Image url="@../../Asstes/System/icons8-add-male-user-group-60.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -47,7 +47,7 @@
                <graphic>
                   <ImageView fx:id="imgQr" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Asstes/System/icons8-qr-50.png" />
+                        <Image url="@../../Asstes/System/icons8-details-64.png" />
                      </image>
                   </ImageView>
                </graphic>

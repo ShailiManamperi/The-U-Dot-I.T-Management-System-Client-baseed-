@@ -2,6 +2,7 @@ package lk.system.it.Service;
 
 
 import lk.system.it.Dao.custom.impl.*;
+import lk.system.it.Service.custom.impl.AddStudentServiceImpl;
 import lk.system.it.Service.custom.impl.CourseServiceImpl;
 import lk.system.it.Service.custom.impl.StudentServiceImpl;
 import lk.system.it.Service.custom.impl.Student_CourseServiceImpl;
@@ -25,6 +26,8 @@ public class ServiceFactory {
                 return (T)new CourseServiceImpl();
             case Student_Course:
                 return (T)new Student_CourseServiceImpl();
+            case ADDSTUDENT:
+                return (T)new AddStudentServiceImpl();
             default:
                 return null;
         }

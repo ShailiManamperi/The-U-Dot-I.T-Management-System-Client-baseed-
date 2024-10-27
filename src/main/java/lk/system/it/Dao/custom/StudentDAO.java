@@ -16,5 +16,7 @@ public interface StudentDAO extends SuperDAO {
     Optional<Student> findByPk(String pk);
     boolean existByPk(String pk);
 
+    Student findStudent(String Stud_id,String type);
+
 
 }

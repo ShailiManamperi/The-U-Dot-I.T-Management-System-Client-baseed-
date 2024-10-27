@@ -99,6 +99,30 @@ public class StudentDAOImpl implements StudentDAO {
         }
     }
 
+    @Override
+    public Student findStudent(String Stud_id, String type) {
+        System.out.println("dao "+Stud_id+" "+type);
+        Student student=null;
+        try {
+            String sql = "Select * from Students where " + type + "= ?";
+            ResultSet rst = DBUtil.executeQuery(sql, Stud_id);
+            if(rst.next()){
+                student= new Student(
+                        rst.getString("student_id"),
+                        rst.getString("student_name"),
+                        rst.getString("contact_number"),
+                        rst.getString("address"),
+                        rst.getString("school"),
+                        rst.getBytes("photo ")
+                );
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to find the Student details");
+        }
+        return student;
+    }
+
 //    @Override
 //    public Item save(Item entity) throws ConstraintViolationException {
 //        try {
