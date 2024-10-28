@@ -21,7 +21,6 @@ public class Navigation {
                 window.setTitle("Student Management");
                 initUI("StudentFrame.fxml");
                 break;
-
             case ADMIN:
                 window.setTitle("Admin Dashboard");
                 init("AdminContentFrame.fxml");
@@ -35,9 +34,9 @@ public class Navigation {
                 window.setTitle("Attendace form");
                 init("");
                 break;
-            case QR:
-                window.setTitle("Qr making form");
-                init("");
+            case DETAIL:
+                window.setTitle("Student Detail Management");
+                initUI("DetailsFrame.fxml");
                 break;
         }
     }

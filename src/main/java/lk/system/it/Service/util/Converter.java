@@ -24,11 +24,11 @@ public class Converter {
     }
 
     public Student_CourseDto fromStud_Cour(Student_Course studentCourse ){
-        return new Student_CourseDto(studentCourse.getStudent_id(),studentCourse.getCourse_id(),studentCourse.getStatus(), studentCourse.getQr());
+        return new Student_CourseDto(studentCourse.getStudent_id(),studentCourse.getCourse_id(),studentCourse.getStatus(), studentCourse.getQr(),studentCourse.getCity());
     }
 
     public Student_Course toStud_Cour(Student_CourseDto studentCourseDto){
-        return new Student_Course(studentCourseDto.getStudent_id(),studentCourseDto.getCourse_id(),studentCourseDto.getStatus(),studentCourseDto.getQr());
+        return new Student_Course(studentCourseDto.getStudent_id(),studentCourseDto.getCourse_id(),studentCourseDto.getStatus(),studentCourseDto.getQr(),studentCourseDto.getCity());
     }
 }
 

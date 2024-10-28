@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="frame" prefHeight="700.0" prefWidth="985.0" style="-fx-background-color: #e5e5e6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.system.it.Controller.DetailFrameController">
+   <children>
+      <ImageView fitHeight="440.0" fitWidth="388.0" layoutX="73.0" layoutY="114.0" opacity="0.37" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Asstes/System/employee.jpg" />
+         </image>
+      </ImageView>
+      <VBox layoutX="56.0" layoutY="91.0" prefHeight="468.0" prefWidth="423.0" spacing="30.0">
+         <children>
+            <JFXTextField fx:id="txtStudid" prefHeight="37.0" prefWidth="333.0" promptText="Student id">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtstudename" prefHeight="37.0" prefWidth="333.0" promptText="Student Name">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtcontactno" prefHeight="37.0" prefWidth="333.0" promptText="Contact number">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtaddress" prefHeight="37.0" prefWidth="333.0" promptText="Address">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtschool" prefHeight="37.0" prefWidth="333.0" promptText="School">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtcourse" prefHeight="37.0" prefWidth="333.0" promptText="Course">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtcity" prefHeight="37.0" prefWidth="333.0" promptText="City">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtStatus" prefHeight="37.0" prefWidth="333.0" promptText="Status">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="15.0" right="15.0" top="20.0" />
+         </padding>
+      </VBox>
+      <Label fx:id="lbltitle" layoutX="94.0" layoutY="14.0" prefHeight="43.0" prefWidth="308.0" text="Student Details" textFill="#30394a">
+         <font>
+            <Font name="High Tower Text Italic" size="35.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="75.0" fitWidth="75.0" onMouseClicked="#HomePageOnMouseClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Asstes/System/logo1.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnupload1" contentDisplay="GRAPHIC_ONLY" layoutX="849.0" layoutY="308.0" onAction="#uploadimageOnAction" prefHeight="39.0" prefWidth="48.0" text="Upload ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="txtSearch" layoutX="128.0" layoutY="59.0" onAction="#searchStudntOnAction" prefHeight="37.0" prefWidth="298.0" promptText="Search">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXTextField>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="106.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Asstes/System/icons8-search-100.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER" layoutX="415.0" layoutY="58.0" prefHeight="38.0" prefWidth="506.0" spacing="15.0">
+         <children>
+            <JFXRadioButton fx:id="rbId" text="Student Id">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="rbName" text="Student Name">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="rbContact" text="Contact Number">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXRadioButton>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="233.0" layoutY="640.0" prefHeight="45.0" prefWidth="268.0" spacing="20.0">
+         <children>
+            <JFXButton fx:id="btnUpdate" onAction="#updatestudentOnAction" prefHeight="44.0" prefWidth="125.0" text="Update">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="btnDelete" onAction="#deletestudentOnAction" prefHeight="44.0" prefWidth="125.0" text="Delete">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+      <TableView fx:id="tblAttend" layoutX="643.0" layoutY="363.0" prefHeight="308.0" prefWidth="291.0">
+        <columns>
+          <TableColumn fx:id="colDate" prefWidth="144.3333740234375" text="C1" />
+          <TableColumn fx:id="colStatus" prefWidth="144.6666259765625" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+   <stylesheets>
+      <URL value="@../../StyleSheet/System/button.css" />
+      <URL value="@../../StyleSheet/System/customer.css" />
+   </stylesheets>
+</AnchorPane>

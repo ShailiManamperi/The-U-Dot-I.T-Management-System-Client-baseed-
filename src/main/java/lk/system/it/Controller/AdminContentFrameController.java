@@ -114,8 +114,8 @@ public class AdminContentFrameController {
         Navigation.navigate(Routes.STUDENT,pane);
     }
 
-    public void showQRmakeFrameOnAction(ActionEvent actionEvent) throws IOException {
-        Navigation.navigate(Routes.QR,pane);
+    public void showDetailFrameOnAction(ActionEvent actionEvent) throws IOException {
+        Navigation.navigate(Routes.DETAIL,pane);
     }
 
     public void showmarkattendanceOnAction(ActionEvent actionEvent) throws IOException {

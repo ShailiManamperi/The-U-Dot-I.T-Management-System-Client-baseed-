@@ -1,20 +1,18 @@
-package lk.system.it.Entity;
+package lk.system.it.Dtm;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Date;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @ToString
-public class Student_Course {
-
+public class MarkDtm {
     private String student_id;
-    private String course_id;
+    private Date date;
     private String status;
-    private byte[] Qr;
-    private String city;
-
 }

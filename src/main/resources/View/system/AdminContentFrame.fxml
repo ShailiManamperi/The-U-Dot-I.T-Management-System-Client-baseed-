@@ -40,7 +40,7 @@
                   </ImageView>
                </graphic>
             </JFXButton>
-            <JFXButton fx:id="btnQrcode" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#showQRmakeFrameOnAction" onMouseEntered="#btnQrcodeOnMouseEnteredAction" onMouseExited="#btnQrcodeOnMouseExitAction" prefHeight="55.0" prefWidth="242.0" text="QR Maker" textAlignment="CENTER">
+            <JFXButton fx:id="btnQrcode" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#showDetailFrameOnAction" onMouseEntered="#btnQrcodeOnMouseEnteredAction" onMouseExited="#btnQrcodeOnMouseExitAction" prefHeight="55.0" prefWidth="242.0" text="Student Details" textAlignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>

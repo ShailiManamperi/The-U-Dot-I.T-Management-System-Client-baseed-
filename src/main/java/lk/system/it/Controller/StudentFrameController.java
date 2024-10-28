@@ -52,6 +52,8 @@ public class StudentFrameController {
     public ImageView imgQr;
     public JFXButton btngenerate;
     public ImageView imgNew;
+    public JFXButton btnAdd;
+    public JFXComboBox<String> cmbclass;
     @FXML
     private JFXTextField txtStudid;
 
@@ -86,6 +88,13 @@ public class StudentFrameController {
         this.studentCourseService = ServiceFactory.getInstance().getService(ServiceTypes.Student_Course);
         this.addStudentService = ServiceFactory.getInstance().getService(ServiceTypes.ADDSTUDENT);
         loadCourseId();
+        loadCities();
+    }
+
+    private void loadCities() {
+        String[] type = {"Panadura","Bandaragama"};
+        ObservableList<String> list = FXCollections.observableArrayList(type);
+        cmbclass.setItems(list);
     }
 
     private void loadCourseId() {
@@ -146,43 +155,11 @@ public class StudentFrameController {
         String stud_id = txtStudid.getText();
         String cour_id = cmbcourse.getSelectionModel().getSelectedItem().toString();
         String status = "Not Done";
-        return new Student_CourseDto(stud_id,cour_id,status,QrBytes);
+        String city = cmbclass.getSelectionModel().getSelectedItem().toString();
+        return new Student_CourseDto(stud_id,cour_id,status,QrBytes,city);
     }
-//    private String selectedtype() {
-//        String type = null;
-//        if (rdbid.isSelected()){
-//            type ="student_id";
-//        }if (rdbname.isSelected()){
-//            type = "student_name";
-//        }if (rbcontact.isSelected()){
-//            type = "contact_number";
-//        }
-//        return type;
-//    }
-//    @FXML
-//    void searchOnAction(ActionEvent event) {
-//        String selectedtype = selectedtype();
-//        if (selectedtype == null){
-//            new Alert(Alert.AlertType.WARNING,"Please select the type frist").show();
-//        }else{
-//            String search = txtSearch.getText();
-//            System.out.println(search);
-//
-//            selectedUser = employeeService.searchEmployee(search,selectedtype);
-//
-//            System.out.println(selectedUser);
-//            if (selectedUser == null){
-//                new Alert(Alert.AlertType.WARNING,"this type employee not founded!").show();
-//            }else {
-//                String type = selectedUser.getJob();
-//                salaryDTO = attendanceService.searchSalaryType(type);
-//                System.out.println(selectedUser.getEid());
-//                btnUpdate.setDisable(false);
-//                btnDelete.setDisable(false);
-//                fillData();
-//            }
-//        }
-//    }
+
+
 
     @FXML
     void newStudentidOnAction(ActionEvent event) {

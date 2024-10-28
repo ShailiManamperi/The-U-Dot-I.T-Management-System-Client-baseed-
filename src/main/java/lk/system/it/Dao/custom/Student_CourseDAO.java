@@ -8,5 +8,5 @@ import lk.system.it.Entity.Student_Course;
 public interface Student_CourseDAO extends SuperDAO {
 
     Student_Course save(Student_Course entity) throws ConstraintViolationException;
-    Student findStudent_deails(String Stud_id, String type);
+    Student_Course findStudent_deails(String Stud_id);
 }

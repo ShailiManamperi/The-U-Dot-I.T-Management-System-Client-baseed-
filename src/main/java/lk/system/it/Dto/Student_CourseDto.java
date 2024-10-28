@@ -15,6 +15,7 @@ public class Student_CourseDto {
     private String course_id;
     private String status;
     private byte[] Qr;
+    private String city;
 
 
 }

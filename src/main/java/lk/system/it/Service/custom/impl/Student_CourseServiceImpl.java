@@ -12,6 +12,7 @@ import lk.system.it.Service.exception.DuplicateException;
 import lk.system.it.Service.util.Converter;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class Student_CourseServiceImpl implements Student_CourseService {
     private final Converter converter;
@@ -28,5 +29,11 @@ public class Student_CourseServiceImpl implements Student_CourseService {
     public Student_CourseDto saveStudentDetail(Student_CourseDto dto) throws DuplicateException {
         Student_Course save = studentCourseDAO.save(converter.toStud_Cour(dto));
         return converter.fromStud_Cour(save);
+    }
+
+    @Override
+    public Student_CourseDto findStudent_Course(String id) throws SQLException {
+        Student_Course studentDeails = studentCourseDAO.findStudent_deails(id);
+        return converter.fromStud_Cour(studentDeails);
     }
 }

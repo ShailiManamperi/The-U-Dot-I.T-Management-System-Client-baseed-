@@ -19,8 +19,16 @@ CREATE TABLE Student_Course (
     course_id VARCHAR(30),
     status VARCHAR(20),
     Qr BLOB,
+    city VARCHAR(15),
     CONSTRAINT FOREIGN KEY (student_id) REFERENCES Students (student_id)
     			ON DELETE CASCADE ON UPDATE CASCADE,
     	CONSTRAINT FOREIGN KEY (course_id) REFERENCES Courses (course_id)
+        			ON DELETE CASCADE ON UPDATE CASCADE
+);
+CREATE TABLE Attend (
+    student_id VARCHAR(20),
+    date Date,
+    status VARCHAR(20),
+    CONSTRAINT FOREIGN KEY (student_id) REFERENCES Students (student_id)
         			ON DELETE CASCADE ON UPDATE CASCADE
 );
