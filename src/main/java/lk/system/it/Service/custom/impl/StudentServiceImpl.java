@@ -4,9 +4,11 @@ package lk.system.it.Service.custom.impl;
 import lk.system.it.Dao.DaoFactory;
 import lk.system.it.Dao.DaoTypes;
 import lk.system.it.Dao.custom.StudentDAO;
+import lk.system.it.Dao.custom.Student_CourseDAO;
 import lk.system.it.Db.DBConnection;
 import lk.system.it.Dto.StudentDto;
 import lk.system.it.Entity.Student;
+import lk.system.it.Entity.Student_Course;
 import lk.system.it.Service.custom.StudentService;
 import lk.system.it.Service.exception.DuplicateException;
 import lk.system.it.Service.exception.NotFoundException;
@@ -23,11 +25,13 @@ public class StudentServiceImpl implements StudentService {
     private final Connection connection;
 
     private final StudentDAO studentDAO;
+    private final Student_CourseDAO studentCourseDAO;
 
     public StudentServiceImpl() {
         connection = DBConnection.getDbConnection().getConnection();
         converter = new Converter();
         studentDAO = DaoFactory.getInstance().getDAO(connection, DaoTypes.STUDENT);
+        studentCourseDAO = DaoFactory.getInstance().getDAO(connection, DaoTypes.Student_Course);
     }
     @Override
     public StudentDto saveStudent(StudentDto Dto) throws DuplicateException {
@@ -56,4 +60,20 @@ public class StudentServiceImpl implements StudentService {
         System.out.println(student);
         return converter.fromStudent(student);
     }
+
+    @Override
+    public StudentDto findByPk(String pk) {
+        Student student = studentDAO.findByPk(pk);
+        return converter.fromStudent(student);
+    }
+
+//    @Override
+//    public ArrayList<StudentDto> findStudentByCity(String city) throws SQLException {
+//        ArrayList<StudentDto> studentDtos = new ArrayList<>();
+//        ArrayList<Student_Course> studentsByCity = studentCourseDAO.findStudentsByCity(city);
+//        for (Student_Course student : studentsByCity) {
+//            studentDtos.add(converter.fromStudent(student));
+//        }
+//        return studentDtos;
+//    }
 }

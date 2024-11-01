@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.system.it.Dtm.AttendaceDtm;
@@ -20,6 +21,7 @@ import lk.system.it.Service.custom.StudentService;
 import lk.system.it.Service.custom.Student_CourseService;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 
 public class DetailFrameController {
@@ -27,8 +29,8 @@ public class DetailFrameController {
     public JFXTextField txtStatus;
     public JFXTextField txtcity;
     public TableView<AttendaceDtm> tblAttend;
-    public TableColumn colDate;
-    public TableColumn colStatus;
+    public TableColumn<AttendaceDtm, Date> colDate;
+    public TableColumn<AttendaceDtm,String> colStatus;
     @FXML
     private AnchorPane frame;
 
@@ -78,6 +80,8 @@ public class DetailFrameController {
     public Student_CourseService studentCourseService;
 
     public void initialize() throws IOException {
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         btnUpdate.setDisable(true);
         btnDelete.setDisable(true);
         this.studentService = ServiceFactory.getInstance().getService(ServiceTypes.STUDENT);

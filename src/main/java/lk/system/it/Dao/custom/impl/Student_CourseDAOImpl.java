@@ -9,6 +9,7 @@ import lk.system.it.Entity.Student_Course;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Student_CourseDAOImpl implements Student_CourseDAO {
     private final Connection connection;
@@ -55,6 +56,24 @@ public class Student_CourseDAOImpl implements Student_CourseDAO {
             throw new RuntimeException("Failed to find the Student details in studentCourse");
         }
         return studentCourse;
+    }
+
+    @Override
+    public ArrayList<Student_Course> findStudentsByCity(String city) throws SQLException {
+        ArrayList<Student_Course> students = new ArrayList<>();
+        ResultSet rs = DBUtil.executeQuery("select * from student_course where city=?",city);
+        while (rs.next()) {
+            Student_Course student = new Student_Course(
+                    rs.getString("student_id"),
+                    rs.getString("course_id"),
+                    rs.getString("status"),
+                    rs.getBytes("Qr"),
+                    rs.getString("city")
+            );
+            students.add(student);
+
+        }
+        return students;
     }
 
 

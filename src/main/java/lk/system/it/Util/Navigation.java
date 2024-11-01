@@ -32,7 +32,7 @@ public class Navigation {
                 break;
             case ATTEND:
                 window.setTitle("Attendace form");
-                init("");
+                initUI("AttendanceFrame.fxml");
                 break;
             case DETAIL:
                 window.setTitle("Student Detail Management");

@@ -1,8 +1,11 @@
 package lk.system.it.Service.util;
 
+import lk.system.it.Dtm.MarkDtm;
+import lk.system.it.Dto.AttendanceDto;
 import lk.system.it.Dto.CourseDto;
 import lk.system.it.Dto.StudentDto;
 import lk.system.it.Dto.Student_CourseDto;
+import lk.system.it.Entity.Attendance;
 import lk.system.it.Entity.Course;
 import lk.system.it.Entity.Student;
 import lk.system.it.Entity.Student_Course;
@@ -29,6 +32,18 @@ public class Converter {
 
     public Student_Course toStud_Cour(Student_CourseDto studentCourseDto){
         return new Student_Course(studentCourseDto.getStudent_id(),studentCourseDto.getCourse_id(),studentCourseDto.getStatus(),studentCourseDto.getQr(),studentCourseDto.getCity());
+    }
+
+    public Attendance toAttend(AttendanceDto attendanceDto){
+        return new Attendance(attendanceDto.getStudent_id(), attendanceDto.getDate(), attendanceDto.getStatus());
+    }
+
+    public AttendanceDto fromAttend(Attendance attendance){
+        return new AttendanceDto(attendance.getStudent_id(), attendance.getDate(),attendance.getStatus());
+    }
+
+    public MarkDtm fromAttendance(Attendance attendance,String name){
+        return new MarkDtm(attendance.getStudent_id(), name, attendance.getStatus());
     }
 }
 

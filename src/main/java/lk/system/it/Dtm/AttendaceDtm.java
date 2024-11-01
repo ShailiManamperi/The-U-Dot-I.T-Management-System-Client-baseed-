@@ -9,10 +9,9 @@ import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @ToString
-public class MarkDtm {
-    private String student_id;
-    private String name;
+@Data
+public class AttendaceDtm {
+    private Date date;
     private String status;
 }

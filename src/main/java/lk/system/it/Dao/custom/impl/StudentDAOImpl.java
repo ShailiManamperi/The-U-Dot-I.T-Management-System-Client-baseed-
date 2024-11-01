@@ -3,11 +3,14 @@ package lk.system.it.Dao.custom.impl;
 import lk.system.it.Dao.custom.StudentDAO;
 import lk.system.it.Dao.exception.ConstraintViolationException;
 import lk.system.it.Dao.util.DBUtil;
+import lk.system.it.Entity.Attendance;
 import lk.system.it.Entity.Student;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,8 +87,26 @@ public class StudentDAOImpl implements StudentDAO {
 
 
     @Override
-    public Optional<Student> findByPk(String pk) {
-        return Optional.empty();
+    public Student findByPk(String pk) {
+        Student student=null;
+        try {
+            String sql = "Select * from Students where student_id= ?";
+            ResultSet rst = DBUtil.executeQuery(sql, pk);
+            if(rst.next()){
+                student= new Student(
+                        rst.getString("student_id"),
+                        rst.getString("student_name"),
+                        rst.getString("contact_number"),
+                        rst.getString("address"),
+                        rst.getString("school"),
+                        rst.getBytes("photo")
+                );
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to find the Student details");
+        }
+        return student;
     }
 
     @Override
@@ -108,12 +129,6 @@ public class StudentDAOImpl implements StudentDAO {
             ResultSet rst = DBUtil.executeQuery(sql, Stud_id);
             System.out.println(rst.toString());
             if(rst.next()){
-                System.out.println(rst.getString(1));
-                System.out.println(rst.getString(2));
-                System.out.println(rst.getString(3));
-                System.out.println(rst.getString(4));
-                System.out.println(rst.getString(5));
-                System.out.println(rst.getString(6));
                 student= new Student(
                         rst.getString("student_id"),
                         rst.getString("student_name"),
@@ -130,5 +145,23 @@ public class StudentDAOImpl implements StudentDAO {
         }
         return student;
     }
+
+    public String findStudentNameByPk(String pk) {
+        String studentName = null;
+        try {
+            String sql = "SELECT student_name FROM Students WHERE student_id = ?";
+            ResultSet rst = DBUtil.executeQuery(sql, pk);
+
+            if (rst.next()) {
+                studentName = rst.getString("student_name");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Failed to find the Student name");
+        }
+        return studentName;
+    }
+
+
 
 }

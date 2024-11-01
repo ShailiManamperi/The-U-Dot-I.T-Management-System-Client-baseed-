@@ -4,6 +4,8 @@ import lk.system.it.Dao.SuperDAO;
 import lk.system.it.Dao.exception.ConstraintViolationException;
 import lk.system.it.Entity.Student;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,10 +15,14 @@ public interface StudentDAO extends SuperDAO {
     boolean deleteByPk(String pk) throws ConstraintViolationException;
     List<Student> findAll();
     String findNewId();
-    Optional<Student> findByPk(String pk);
+    Student findByPk(String pk);
     boolean existByPk(String pk);
 
     Student findStudent(String Stud_id,String type);
+
+    String findStudentNameByPk(String pk);
+
+
 
 
 }

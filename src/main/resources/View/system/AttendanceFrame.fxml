@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="frame" prefHeight="700.0" prefWidth="985.0" style="-fx-background-color: #e5e5e6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.system.it.Controller.AttendanceFrameController">
+   <children>
+      <ImageView fitHeight="440.0" fitWidth="388.0" layoutX="576.0" layoutY="114.0" opacity="0.37" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Asstes/System/employee.jpg" />
+         </image>
+      </ImageView>
+      <VBox layoutX="549.0" layoutY="164.0" prefHeight="372.0" prefWidth="423.0" spacing="30.0">
+         <children>
+            <JFXTextField fx:id="txtStudid" prefHeight="37.0" prefWidth="333.0" promptText="Student id">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtstudename" prefHeight="37.0" prefWidth="333.0" promptText="Student Name">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtcontactno" prefHeight="37.0" prefWidth="333.0" promptText="Contact number">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtschool" prefHeight="37.0" prefWidth="333.0" promptText="School">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField fx:id="txtcourse" prefHeight="37.0" prefWidth="333.0" promptText="Course">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXTextField>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="15.0" right="15.0" top="20.0" />
+         </padding>
+      </VBox>
+      <Label fx:id="lbltitle" layoutX="94.0" layoutY="14.0" prefHeight="43.0" prefWidth="308.0" text="Attendance Mark" textFill="#30394a">
+         <font>
+            <Font name="High Tower Text Italic" size="35.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="75.0" fitWidth="75.0" onMouseClicked="#HomePageOnMouseClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Asstes/System/logo1.png" />
+         </image>
+      </ImageView>
+
+      <JFXTextField fx:id="txtSearch" layoutX="149.0" layoutY="75.0" onAction="#searchStudntOnAction" prefHeight="37.0" prefWidth="298.0" promptText="Search">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </JFXTextField>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="131.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Asstes/System/icons8-search-100.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblAttend" layoutX="39.0" layoutY="130.0" onMouseClicked="#studentDetailOnMouseClicked" prefHeight="471.0" prefWidth="442.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="118.33331298828125" text="Stud_Id" />
+            <TableColumn fx:id="ColName" prefWidth="175.0" text="Name" /> <!-- Updated ID for clarity -->
+            <TableColumn fx:id="ColStatus" prefWidth="148.0" text="Status" />
+         </columns>
+      </TableView>
+      <JFXButton fx:id="btnMark" layoutX="774.0" layoutY="589.0" onAction="#MarkPresentOnAction" prefHeight="44.0" prefWidth="125.0" text="Mark">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXComboBox fx:id="cmbcities" layoutX="65.0" layoutY="621.0" prefHeight="44.0" prefWidth="273.0" promptText="Load All In" />
+      <JFXButton fx:id="btnLoad" layoutX="349.0" layoutY="619.0" onAction="#loadAllStudentOnAction" prefHeight="44.0" prefWidth="125.0" text="Load">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnRefresh" contentDisplay="GRAPHIC_ONLY" layoutX="486.0" layoutY="132.0" onAction="#RefreshOnAction" prefHeight="44.0" prefWidth="31.0" text="Refresh"> <!-- Updated text -->
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Asstes/System/icons8-refresh-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+   </children>
+   <stylesheets>
+      <URL value="@../../StyleSheet/System/button.css" />
+      <URL value="@../../StyleSheet/System/customer.css" />
+   </stylesheets>
+</AnchorPane>

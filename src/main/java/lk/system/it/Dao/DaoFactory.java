@@ -1,6 +1,7 @@
 package lk.system.it.Dao;
 
 
+import lk.system.it.Dao.custom.impl.AttendanceDaoImpl;
 import lk.system.it.Dao.custom.impl.CourseDaoImpl;
 import lk.system.it.Dao.custom.impl.StudentDAOImpl;
 import lk.system.it.Dao.custom.impl.Student_CourseDAOImpl;
@@ -25,6 +26,8 @@ public class DaoFactory {
                 return (T)new Student_CourseDAOImpl(connection);
             case COURSE:
                 return (T)new CourseDaoImpl(connection);
+            case ATTEND:
+                return (T)new AttendanceDaoImpl(connection);
 //            case EMPLOYEE:
 //                return (T)new employeeDAOImpl(connection);
 //            case ATTEND:

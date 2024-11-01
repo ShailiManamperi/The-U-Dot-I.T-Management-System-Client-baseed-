@@ -82,6 +82,9 @@ public class StudentFrameController {
     public Student_CourseService studentCourseService;
     public AddStudentService addStudentService;
 
+    private Image defaultImage;
+
+
     public void initialize() throws SQLException, ClassNotFoundException {
         this.courseService = ServiceFactory.getInstance().getService(ServiceTypes.COURSE);
         this.studentService = ServiceFactory.getInstance().getService(ServiceTypes.STUDENT);
@@ -89,6 +92,7 @@ public class StudentFrameController {
         this.addStudentService = ServiceFactory.getInstance().getService(ServiceTypes.ADDSTUDENT);
         loadCourseId();
         loadCities();
+        defaultImage = imgStud.getImage();
     }
 
     private void loadCities() {
@@ -138,24 +142,74 @@ public class StudentFrameController {
         txtaddress.clear();
         txtschool.clear();
         cmbcourse.getSelectionModel().clearSelection();
-        imgStud.setImage(null);
+        imgStud.setImage(defaultImage);
+        imgQr.setImage(defaultImage);
         imageBytes = null;
+        QrBytes = null;
     }
 
-    private StudentDto makeStudentObject(){
+    private StudentDto makeStudentObject() {
         String id = txtStudid.getText();
         String name = txtstudename.getText();
         String contact = txtcontactno.getText();
         String address = txtaddress.getText();
         String school = txtschool.getText();
-        return new StudentDto(id,name,contact,address,school,imageBytes);
+
+        if (id == null || id.isEmpty()) {
+            showError("Student ID is missing.");
+            return null;
+        }
+        if (name == null || name.isEmpty()) {
+            showError("Student Name is missing.");
+            return null;
+        }
+        if (contact == null || contact.isEmpty()) {
+            showError("Contact Number is missing.");
+            return null;
+        }
+        if (address == null || address.isEmpty()) {
+            showError("Address is missing.");
+            return null;
+        }
+        if (school == null || school.isEmpty()) {
+            showError("School Name is missing.");
+            return null;
+        }
+        if (imageBytes == null || imageBytes.length == 0) {
+            showError("Student Image is missing.");
+            return null;
+        }
+
+        return new StudentDto(id, name, contact, address, school, imageBytes);
     }
+
+    private void showError(String message) {
+        new Alert(Alert.AlertType.ERROR, message, ButtonType.CLOSE).show();
+    }
+
 
     private Student_CourseDto makeStu_CourObject(){
         String stud_id = txtStudid.getText();
         String cour_id = cmbcourse.getSelectionModel().getSelectedItem().toString();
         String status = "Not Done";
         String city = cmbclass.getSelectionModel().getSelectedItem().toString();
+        if (stud_id == null || stud_id.isEmpty()) {
+            showError("Student ID is missing.");
+            return null;
+        }
+        if (cour_id.isEmpty()) {
+            showError("Course ID is missing.");
+            return null;
+        }
+        if (city.isEmpty()) {
+            showError("City is missing.");
+            return null;
+        }
+        if (QrBytes == null || QrBytes.length == 0) {
+            showError("Qr Image is missing.");
+            return null;
+        }
+
         return new Student_CourseDto(stud_id,cour_id,status,QrBytes,city);
     }
 

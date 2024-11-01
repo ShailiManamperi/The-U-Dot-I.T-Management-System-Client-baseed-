@@ -50,11 +50,11 @@
 }#btndiplay:pressed,#btnnewload:pressed{
       -fx-background-color: linear-gradient(from 0% 10% to 95% 100% ,#827656, #ffffff, #827656);
 }
-#btnNew,#btnsearch,#btnLoad,#btnMark,#btnupload{
+#btnNew,#btnsearch,#btnLoad,#btnMark,#btnupload,#btnRefresh{
     -fx-background-color: linear-gradient(from 0% 10% to 95% 100%,#97979b, #ffffff, #97979b);
-}#btnNew:hover,#btnsearch :hover,#btnLoad:hover,#btnMark:hover,#btnupload:hover{
+}#btnNew:hover,#btnsearch :hover,#btnLoad:hover,#btnMark:hover,#btnupload:hover,#btnRefresh:hover{
      -fx-background-color: linear-gradient(from 0% 10% to 95% 100%,#8a8a8f, #ffffff, #8a8a8f);
-}#btnNew:pressed,#btnsearch:pressed,#btnLoad:pressed,#btnMark:pressed,#btnupload:pressed{
+}#btnNew:pressed,#btnsearch:pressed,#btnLoad:pressed,#btnMark:pressed,#btnupload:pressed,#btnRefresh:pressed{
       -fx-background-color: linear-gradient(from 0% 10% to 95% 100% ,#7d7d82, #ffffff, #7d7d82);
 }
 

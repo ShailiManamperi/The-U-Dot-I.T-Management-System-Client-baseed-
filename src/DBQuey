@@ -6,7 +6,7 @@ CREATE TABLE Students (
     contact_number VARCHAR(10),
     address VARCHAR(255),
     school VARCHAR(255),
-    photo BLOB
+    photo LONGBLOB
 );
 CREATE TABLE Courses (
     course_id VARCHAR(30) PRIMARY KEY,
@@ -18,7 +18,7 @@ CREATE TABLE Student_Course (
     student_id VARCHAR(20),
     course_id VARCHAR(30),
     status VARCHAR(20),
-    Qr BLOB,
+    Qr LONGBLOB,
     city VARCHAR(15),
     CONSTRAINT FOREIGN KEY (student_id) REFERENCES Students (student_id)
     			ON DELETE CASCADE ON UPDATE CASCADE,

@@ -13,6 +13,7 @@ import lk.system.it.Service.util.Converter;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class Student_CourseServiceImpl implements Student_CourseService {
     private final Converter converter;
@@ -35,5 +36,15 @@ public class Student_CourseServiceImpl implements Student_CourseService {
     public Student_CourseDto findStudent_Course(String id) throws SQLException {
         Student_Course studentDeails = studentCourseDAO.findStudent_deails(id);
         return converter.fromStud_Cour(studentDeails);
+    }
+
+    @Override
+    public ArrayList<Student_CourseDto> findStudentByCity(String city) throws SQLException {
+        ArrayList<Student_CourseDto> studentDtos = new ArrayList<>();
+        ArrayList<Student_Course> studentsByCity = studentCourseDAO.findStudentsByCity(city);
+        for (Student_Course student : studentsByCity) {
+            studentDtos.add(converter.fromStud_Cour(student));
+        }
+        return studentDtos;
     }
 }

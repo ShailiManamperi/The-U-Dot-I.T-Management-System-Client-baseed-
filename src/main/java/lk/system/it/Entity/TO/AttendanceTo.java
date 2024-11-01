@@ -1,4 +1,4 @@
-package lk.system.it.Dtm;
+package lk.system.it.Entity.TO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @ToString
-public class MarkDtm {
+public class AttendanceTo {
     private String student_id;
-    private String name;
     private String status;
 }
