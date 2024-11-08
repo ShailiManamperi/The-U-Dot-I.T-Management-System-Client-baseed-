@@ -11,6 +11,7 @@ import org.exolab.castor.mapping.xml.Sql;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Map;
 
 public interface AttendanceService extends SuperService {
 
@@ -25,5 +26,7 @@ public interface AttendanceService extends SuperService {
     boolean searchIsAdded(LocalDate date) throws SQLException;
 
     ArrayList<AttendanceDto> getStatusById(String pk) throws SQLException;
+
+    Map<String, Map<LocalDate, Integer>> getDailyAttendanceByCity()  throws SQLException;
 
 }

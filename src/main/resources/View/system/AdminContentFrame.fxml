@@ -86,7 +86,7 @@
             <Font name="Berlin Sans FB" size="31.0" />
          </font>
       </Label>
-      <Label fx:id="lblName" layoutX="33.0" layoutY="57.0" prefHeight="41.0" prefWidth="195.0" text="Mr.Vishwa">
+      <Label fx:id="lblName" alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="57.0" prefHeight="41.0" prefWidth="195.0" text="Mr.Vishwa">
          <font>
             <Font name="Berlin Sans FB" size="24.0" />
          </font>

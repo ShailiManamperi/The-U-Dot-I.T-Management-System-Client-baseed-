@@ -15,9 +15,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
 
 public class AttendanceDaoImpl implements AttendanceDao {
     private final Connection connection;
@@ -141,4 +139,32 @@ public class AttendanceDaoImpl implements AttendanceDao {
         }
         return list;
     }
+
+    @Override
+    public Map<String, Map<LocalDate, Integer>> getDailyAttendanceByCity() throws SQLException {
+        Map<String, Map<LocalDate, Integer>> attendanceDataByCity = new HashMap<>();
+
+        String sql = "SELECT sc.city, a.date, COUNT(a.student_id) AS attendance_count " +
+                "FROM Attend a " +
+                "JOIN Student_Course sc ON a.student_id = sc.student_id " +
+                "WHERE a.status = 'Present' " +
+                "GROUP BY sc.city, a.date " +
+                "ORDER BY sc.city, a.date";
+
+        ResultSet resultSet = DBUtil.executeQuery(sql);
+
+        // Loop through the ResultSet to map counts by city and date
+        while (resultSet.next()) {
+            String city = resultSet.getString("city");
+            LocalDate date = resultSet.getDate("date").toLocalDate();
+            int count = resultSet.getInt("attendance_count");
+
+            // Initialize map for each city if not present
+            attendanceDataByCity.putIfAbsent(city, new HashMap<>());
+            attendanceDataByCity.get(city).put(date, count);
+        }
+
+        return attendanceDataByCity;
+    }
+
 }

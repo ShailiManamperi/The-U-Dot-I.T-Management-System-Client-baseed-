@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 public interface AttendanceDao extends SuperDAO {
 
@@ -26,4 +27,7 @@ public interface AttendanceDao extends SuperDAO {
     boolean searchIsAdded(LocalDate date) throws SQLException;
 
     ArrayList<Attendance> getStatusById(String pk) throws SQLException;
+
+    Map<String, Map<LocalDate, Integer>> getDailyAttendanceByCity()  throws SQLException;
 }
+
