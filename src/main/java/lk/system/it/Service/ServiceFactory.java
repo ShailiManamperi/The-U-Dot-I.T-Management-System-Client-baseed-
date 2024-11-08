@@ -27,6 +27,8 @@ public class ServiceFactory {
                 return (T)new AddStudentServiceImpl();
             case ATTEND:
                 return (T)new AttendanceServiceImpl();
+            case USER:
+                return (T)new UserServiceImpl();
             default:
                 return null;
         }

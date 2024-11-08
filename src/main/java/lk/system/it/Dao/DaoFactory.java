@@ -1,10 +1,7 @@
 package lk.system.it.Dao;
 
 
-import lk.system.it.Dao.custom.impl.AttendanceDaoImpl;
-import lk.system.it.Dao.custom.impl.CourseDaoImpl;
-import lk.system.it.Dao.custom.impl.StudentDAOImpl;
-import lk.system.it.Dao.custom.impl.Student_CourseDAOImpl;
+import lk.system.it.Dao.custom.impl.*;
 
 import java.sql.Connection;
 
@@ -28,6 +25,8 @@ public class DaoFactory {
                 return (T)new CourseDaoImpl(connection);
             case ATTEND:
                 return (T)new AttendanceDaoImpl(connection);
+            case USER:
+                return(T) new UserDaoImpl(connection);
 //            case EMPLOYEE:
 //                return (T)new employeeDAOImpl(connection);
 //            case ATTEND:
@@ -42,8 +41,8 @@ public class DaoFactory {
 //                return (T) new SupplierDAOImpl(connection);
 //            case DELIVERY:
 //                return (T) new DeliveryDAOImpl(connection);
-//            case USER:
-//                return(T) new UserDAOImpl(connection);
+
+
 //            case SUPPLIERORDER:
 //                return (T) new SupplierOrderDAOImpl(connection);
 //            case INVOICE:

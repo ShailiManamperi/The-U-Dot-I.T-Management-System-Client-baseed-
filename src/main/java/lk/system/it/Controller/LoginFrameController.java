@@ -10,10 +10,12 @@ import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 //import lk.ijse.shaili.system.Dto.UserDTO;
 //import lk.ijse.shaili.system.Service.ServiceFactory;
@@ -21,6 +23,10 @@ import javafx.util.Duration;
 //import lk.ijse.shaili.system.Service.custom.UserService;
 //import lk.ijse.shaili.system.Util.Navigation;
 //import lk.ijse.shaili.system.Util.Routes;
+import lk.system.it.Dto.UserDTO;
+import lk.system.it.Service.ServiceFactory;
+import lk.system.it.Service.ServiceTypes;
+import lk.system.it.Service.custom.UserService;
 import lk.system.it.Util.Navigation;
 import lk.system.it.Util.Routes;
 
@@ -58,7 +64,7 @@ public class LoginFrameController {
     private ImageView imgHideEye;
 
     @FXML
-    private JFXTextField txtUpUsername;
+    private JFXTextField txtDisplayname;
 
     @FXML
     private JFXPasswordField txtUpPassword;
@@ -67,10 +73,10 @@ public class LoginFrameController {
     private JFXTextField txtPsHint;
 
     @FXML
-    private JFXComboBox cmbUserType;
+    private JFXButton btnRegister;
 
     @FXML
-    private JFXButton btnRegister;
+    private JFXTextField txtUpUsername;
 
     @FXML
     private AnchorPane slider;
@@ -93,16 +99,14 @@ public class LoginFrameController {
     @FXML
     private JFXButton btnlogin;
 
-//    private UserService userService;
-//
-//    public static UserDTO u1;
+    private UserService userService;
+
+    public static UserDTO u1;
 
 
     public void initialize(){
-        //this.userService = ServiceFactory.getInstance().getService(ServiceTypes.USER);
+        this.userService = ServiceFactory.getInstance().getService(ServiceTypes.USER);
         setWelcome();
-        cmbUserType.getItems().addAll("Admin", "Cashier");
-        cmbUserType.setPromptText("Select Login Type");
         imgHideEye.setVisible(false);
         txtShowPassword.setVisible(false);
         lblwelcome.setVisible(false);
@@ -130,49 +134,39 @@ public class LoginFrameController {
 
 
     public void LoginUserOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
-        Navigation.navigate(Routes.ADMIN,pane);
-//        String uname = txtInUsername.getText();
-//        String password = txtInPassword.getText();
-//        UserDTO search = userService.search(uname);
+//        Navigation.navigate(Routes.ADMIN,pane);
+        String uname = txtInUsername.getText();
+        String password = txtInPassword.getText();
+        UserDTO search = userService.search(uname);
 //        String type = search.getType();
-//        String ps = search.getPassword();
-//        String verification = search.getVerification();
-//        if (password.equals(ps)){
-//            if(verification.equals("No")) {
-//                if (type.equals("Admin")) {
-//                    u1 = new UserDTO(search.getUsername(),type,search.getPassword(),"Yes", search.getHint());
-//                    boolean save = userService.update(u1);
-//                    if(save){
-//                        Navigation.navigate(Routes.ADMIN, pane);
-//                    }
-//                }
-//                if (type.equals("Cashier")) {
-//                    u1 = new UserDTO(search.getUsername(),type,search.getPassword(),"Yes","1234");
-//                    boolean isUpdated = userService.update(u1);
-//                    if (isUpdated) {
-//                        Navigation.navigate(Routes.CASHIER, pane);
-//                    }
-//                } else {
-//                    System.out.println("Error 2");
-//                }
-//            }else{
-//                new Alert(Alert.AlertType.WARNING, " This user already login!").show();
-//            }
-//        }else {
-//            txtInPassword.setUnFocusColor(Paint.valueOf("#FF0000"));
-//            new Alert(Alert.AlertType.ERROR,"Enter Password is wrong! please re-enter it").show();
-//        }
+
+        String ps = search.getPassword();
+        String verification = search.getVerification();
+        if (password.equals(ps)){
+            if(verification.equals("No")) {
+                u1 = new UserDTO(search.getUsername(), search.getDis_name(), search.getPassword(),"Yes", search.getHint());
+                boolean save = userService.update(u1);
+                if(save){
+                    Navigation.navigate(Routes.ADMIN, pane);
+                }
+            }else{
+                new Alert(Alert.AlertType.WARNING, " This user already login!").show();
+            }
+        }else {
+            txtInPassword.setUnFocusColor(Paint.valueOf("#FF0000"));
+            new Alert(Alert.AlertType.ERROR,"Enter Password is wrong! please re-enter it").show();
+        }
 
     }
 
     public void getPasswordHintOnMoueClicked(MouseEvent mouseEvent) {
-//        String userName = txtInUsername.getText();
-//        try {
-//            UserDTO search = userService.search(userName);
-//            lblHint.setText(search.getHint());
-//        } catch (SQLException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
+        String userName = txtInUsername.getText();
+        try {
+            UserDTO search = userService.search(userName);
+            lblHint.setText(search.getHint());
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void SHowPasswordOnMouseClicked(MouseEvent mouseEvent) {
@@ -194,30 +188,31 @@ public class LoginFrameController {
     }
 
     public void RegisterUserOnAction(ActionEvent actionEvent) {
-//        String ps = txtUpPassword.getText();
-//        String uname = txtUpUsername.getText();
-//        String hint = txtPsHint.getText();
+        String ps = txtUpPassword.getText();
+        String uname = txtUpUsername.getText();
+        String hint = txtPsHint.getText();
 //        String type = (String) cmbUserType.getValue();
-//        String verification = "No";
-//        if (ps.length() > 8){
-//            UserDTO u1 = new UserDTO(uname,type,ps,verification,hint);
-//            try {
-//                boolean save = userService.save(u1);
-//
-//                if (save) {
-//                    new Alert(Alert.AlertType.CONFIRMATION, "New user Added!").show();
-//                } else {
-//                    new Alert(Alert.AlertType.WARNING, "Something happened!").show();
-//                }
-//            } catch (SQLException | ClassNotFoundException e) {
-//                new Alert(Alert.AlertType.WARNING,"Duplicate entry!").show();
-//                throw new RuntimeException(e);
-//            }
-//        }else{
-//            txtUpPassword.setFocusColor(Paint.valueOf("Red"));
-//            txtUpPassword.requestFocus();
-//
-//        }
+        String dis_name = txtDisplayname.getText();
+        String verification = "No";
+        if (ps.length() > 8){
+            UserDTO u1 = new UserDTO(uname,dis_name,ps,verification,hint);
+            try {
+                boolean save = userService.save(u1);
+
+                if (save) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "New user Added!").show();
+                } else {
+                    new Alert(Alert.AlertType.WARNING, "Something happened!").show();
+                }
+            } catch (SQLException | ClassNotFoundException e) {
+                new Alert(Alert.AlertType.WARNING,"Duplicate entry!").show();
+                throw new RuntimeException(e);
+            }
+        }else{
+            txtUpPassword.setFocusColor(Paint.valueOf("Red"));
+            txtUpPassword.requestFocus();
+
+        }
     }
 
     public void ShowRegisterFormOnAction(ActionEvent actionEvent) {

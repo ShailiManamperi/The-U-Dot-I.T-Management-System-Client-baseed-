@@ -1,14 +1,8 @@
 package lk.system.it.Service.util;
 
 import lk.system.it.Dtm.MarkDtm;
-import lk.system.it.Dto.AttendanceDto;
-import lk.system.it.Dto.CourseDto;
-import lk.system.it.Dto.StudentDto;
-import lk.system.it.Dto.Student_CourseDto;
-import lk.system.it.Entity.Attendance;
-import lk.system.it.Entity.Course;
-import lk.system.it.Entity.Student;
-import lk.system.it.Entity.Student_Course;
+import lk.system.it.Dto.*;
+import lk.system.it.Entity.*;
 
 public class Converter {
     public StudentDto fromStudent(Student student){
@@ -44,6 +38,14 @@ public class Converter {
 
     public MarkDtm fromAttendance(Attendance attendance,String name){
         return new MarkDtm(attendance.getStudent_id(), name, attendance.getStatus());
+    }
+
+    public User toUser(UserDTO userDTO){
+        return new User(userDTO.getUsername(), userDTO.getDis_name(), userDTO.getPassword(), userDTO.getVerification(), userDTO.getHint());
+    }
+
+    public UserDTO fromUser(User user){
+        return new UserDTO(user.getUsername(), user.getDis_name(), user.getPassword(), user.getVerification(), user.getHint());
     }
 }
 

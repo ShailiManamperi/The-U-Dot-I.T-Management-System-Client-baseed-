@@ -11,10 +11,7 @@ public interface StudentService extends SuperService {
      StudentDto saveStudent(StudentDto Dto) throws DuplicateException;
      public String generateNewItemId() throws SQLException;
      public StudentDto searchStudent(String Stud_id,String type);
-
      StudentDto findByPk(String pk);
-
-     //ArrayList<StudentDto> findStudentByCity(String city) throws SQLException;
 
 
 }

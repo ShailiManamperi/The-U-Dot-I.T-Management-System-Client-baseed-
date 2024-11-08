@@ -16,10 +16,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import lk.system.it.Controller.LoginFrameController;
+import lk.system.it.Dto.UserDTO;
+import lk.system.it.Service.ServiceFactory;
+import lk.system.it.Service.ServiceTypes;
+import lk.system.it.Service.custom.UserService;
 import lk.system.it.Util.*;
 import lk.system.it.Util.Task.TimeTask;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalTime;
 
 public class AdminContentFrameController {
@@ -64,18 +69,24 @@ public class AdminContentFrameController {
 
     @FXML
     private Label lblTime;
-    //UserDTO u1 = LoginFrameController.u1;
+    UserDTO u1 = LoginFrameController.u1;
 
-    //public UserService userService;
+    public UserService userService;
 
 
     public void initialize() throws IOException {
+        setUserName();
         setWelcome();
         setTime();
         Parent load = FXMLLoader.load(getClass().getResource("/View/system/AdminDashboardcontent.fxml"));
         pane.getChildren().clear();
         pane.getChildren().add(load);
     }
+
+    private void setUserName() {
+        lblName.setText(u1.getDis_name());
+    }
+
     public void setWelcome() {
         Timeline time = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             LocalTime currentTime = LocalTime.now();
@@ -122,7 +133,13 @@ public class AdminContentFrameController {
         Navigation.navigate(Routes.ATTEND,pane);
     }
 
-    public void logoutOnAction(ActionEvent actionEvent) {
+    public void logoutOnAction(ActionEvent actionEvent) throws SQLException, ClassNotFoundException, IOException {
+        this.userService = ServiceFactory.getInstance().getService(ServiceTypes.USER);
+        UserDTO u2 = new UserDTO(u1.getUsername(),u1.getDis_name(),u1.getPassword(),"No", u1.getHint());
+        boolean updateuser = userService.update(u2);
+        if (updateuser){
+            Navigation.navigate(Routes.SIGNIN, pane);
+        }
     }
 
     public void btnDashboradOnMouseEnteredAction(MouseEvent mouseEvent) {

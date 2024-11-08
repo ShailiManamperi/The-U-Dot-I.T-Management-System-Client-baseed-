@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import java.net.URL?>
@@ -76,12 +75,12 @@
                   <Font name="Californian FB" size="41.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtUpUsername" layoutX="102.0" layoutY="154.0" prefHeight="30.0" prefWidth="312.0" promptText="User Name">
+            <JFXTextField fx:id="txtDisplayname" layoutX="102.0" layoutY="198.0" prefHeight="30.0" prefWidth="312.0" promptText="Display Name">
                <font>
                   <Font size="20.0" />
                </font>
             </JFXTextField>
-            <JFXPasswordField fx:id="txtUpPassword" layoutX="102.0" layoutY="210.0" prefHeight="30.0" prefWidth="312.0" promptText="Pass Word">
+            <JFXPasswordField fx:id="txtUpPassword" layoutX="102.0" layoutY="262.0" prefHeight="30.0" prefWidth="312.0" promptText="Pass Word">
                <font>
                   <Font size="20.0" />
                </font>
@@ -91,12 +90,16 @@
                   <Font size="20.0" />
                </font>
             </JFXTextField>
-            <JFXComboBox fx:id="cmbUserType" layoutX="102.0" layoutY="263.0" prefHeight="48.0" prefWidth="312.0" promptText="User Type" />
             <JFXButton fx:id="btnRegister" layoutX="130.0" layoutY="429.0" onAction="#RegisterUserOnAction" prefHeight="48.0" prefWidth="220.0" text="Register">
                <font>
                   <Font size="24.0" />
                </font>
             </JFXButton>
+            <JFXTextField fx:id="txtUpUsername" layoutX="103.0" layoutY="141.0" prefHeight="30.0" prefWidth="312.0" promptText="User Name">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </JFXTextField>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="slider" layoutX="628.0" layoutY="104.0" prefHeight="483.0" prefWidth="505.0" style="-fx-background-color: #e5e5e6;">
