@@ -127,4 +127,18 @@ public class AttendanceDaoImpl implements AttendanceDao {
         }
         return flag;
     }
+
+    @Override
+    public ArrayList<Attendance> getStatusById(String pk) throws SQLException {
+        ArrayList<Attendance> list = new ArrayList<>();
+        ResultSet rs = DBUtil.executeQuery("select * from Attend where student_id=?",pk);
+        while (rs.next()) {
+            String id = rs.getString("student_id");
+            LocalDate date1 = LocalDate.parse(rs.getString("date"));
+            String status = rs.getString("status");
+            Attendance attendance = new Attendance(id,date1,status);
+            list.add(attendance);
+        }
+        return list;
+    }
 }

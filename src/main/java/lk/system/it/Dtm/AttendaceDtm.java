@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -12,6 +13,6 @@ import java.util.Date;
 @ToString
 @Data
 public class AttendaceDtm {
-    private Date date;
+    private LocalDate date;
     private String status;
 }

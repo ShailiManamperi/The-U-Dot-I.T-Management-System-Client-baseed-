@@ -24,4 +24,6 @@ public interface AttendanceService extends SuperService {
     MarkDtm getstudentattend(String id,LocalDate date) throws SQLException;
     boolean searchIsAdded(LocalDate date) throws SQLException;
 
+    ArrayList<AttendanceDto> getStatusById(String pk) throws SQLException;
+
 }

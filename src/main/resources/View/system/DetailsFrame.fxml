@@ -79,11 +79,6 @@
             <Image url="@../../Asstes/System/logo1.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="btnupload1" contentDisplay="GRAPHIC_ONLY" layoutX="849.0" layoutY="308.0" onAction="#uploadimageOnAction" prefHeight="39.0" prefWidth="48.0" text="Upload ">
-         <font>
-            <Font name="System Bold" size="18.0" />
-         </font>
-      </JFXButton>
       <JFXTextField fx:id="txtSearch" layoutX="128.0" layoutY="59.0" onAction="#searchStudntOnAction" prefHeight="37.0" prefWidth="298.0" promptText="Search">
          <font>
             <Font size="16.0" />
@@ -129,8 +124,8 @@
       </HBox>
       <TableView fx:id="tblAttend" layoutX="643.0" layoutY="363.0" prefHeight="308.0" prefWidth="291.0">
         <columns>
-          <TableColumn fx:id="colDate" prefWidth="144.3333740234375" text="C1" />
-          <TableColumn fx:id="colStatus" prefWidth="144.6666259765625" text="C2" />
+          <TableColumn fx:id="colDate" prefWidth="144.3333740234375" text="Date" />
+          <TableColumn fx:id="colStatus" prefWidth="144.6666259765625" text="Status" />
         </columns>
       </TableView>
    </children>

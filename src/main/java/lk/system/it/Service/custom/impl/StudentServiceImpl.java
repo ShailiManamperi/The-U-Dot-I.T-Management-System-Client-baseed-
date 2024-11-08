@@ -67,13 +67,21 @@ public class StudentServiceImpl implements StudentService {
         return converter.fromStudent(student);
     }
 
-//    @Override
-//    public ArrayList<StudentDto> findStudentByCity(String city) throws SQLException {
-//        ArrayList<StudentDto> studentDtos = new ArrayList<>();
-//        ArrayList<Student_Course> studentsByCity = studentCourseDAO.findStudentsByCity(city);
-//        for (Student_Course student : studentsByCity) {
-//            studentDtos.add(converter.fromStudent(student));
-//        }
-//        return studentDtos;
-//    }
+    @Override
+    public StudentDto updateStudent(StudentDto dto) {
+        if (!studentDAO.existByPk(dto.getStudent_id())) {
+            throw new NotFoundException("Student not found!");
+        } else {
+            Student update = studentDAO.update(converter.tostudent(dto));
+            return converter.fromStudent(update);
+        }
+    }
+
+    @Override
+    public boolean deleteStudent(String pk) {
+        if (!studentDAO.existByPk(pk)){
+            throw new NotFoundException("This Student id is not found");
+        }
+        return studentDAO.deleteByPk(pk);
+    }
 }

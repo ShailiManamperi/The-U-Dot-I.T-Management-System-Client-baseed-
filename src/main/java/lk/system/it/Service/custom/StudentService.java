@@ -12,6 +12,9 @@ public interface StudentService extends SuperService {
      public String generateNewItemId() throws SQLException;
      public StudentDto searchStudent(String Stud_id,String type);
      StudentDto findByPk(String pk);
+     StudentDto updateStudent(StudentDto dto) ;
+
+     boolean deleteStudent(String pk);
 
 
 }

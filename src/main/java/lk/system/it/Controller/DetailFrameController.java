@@ -3,26 +3,31 @@ package lk.system.it.Controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.system.it.Dtm.AttendaceDtm;
+import lk.system.it.Dtm.MarkDtm;
+import lk.system.it.Dto.AttendanceDto;
 import lk.system.it.Dto.StudentDto;
 import lk.system.it.Dto.Student_CourseDto;
 import lk.system.it.Service.ServiceFactory;
 import lk.system.it.Service.ServiceTypes;
+import lk.system.it.Service.custom.AttendanceService;
 import lk.system.it.Service.custom.StudentService;
 import lk.system.it.Service.custom.Student_CourseService;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class DetailFrameController {
 
@@ -78,6 +83,10 @@ public class DetailFrameController {
 
     public StudentService studentService;
     public Student_CourseService studentCourseService;
+    public AttendanceService attendanceService;
+
+    public Student_CourseDto studentCourse;
+    public StudentDto studentDto;
 
     public void initialize() throws IOException {
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -86,6 +95,7 @@ public class DetailFrameController {
         btnDelete.setDisable(true);
         this.studentService = ServiceFactory.getInstance().getService(ServiceTypes.STUDENT);
         this.studentCourseService = ServiceFactory.getInstance().getService(ServiceTypes.Student_Course);
+        this.attendanceService = ServiceFactory.getInstance().getService(ServiceTypes.ATTEND);
     }
 
     private String selectedtype() {
@@ -108,8 +118,30 @@ public class DetailFrameController {
 
     @FXML
     void deletestudentOnAction(ActionEvent event) {
+        String id = txtStudid.getText();
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Are you sure to delete this student ?", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.YES) {
+            boolean deleteStudent = studentService.deleteStudent(id);
+            if (deleteStudent) {
+                tblAttend.getItems().removeAll(tblAttend.getSelectionModel().getSelectedItem());
+                new Alert(Alert.AlertType.INFORMATION, "Item delete successful").show();
+                clearData();
+            }
+        }
 
     }
+
+    private void clearData() {
+        txtStudid.clear();
+        txtstudename.clear();
+        txtaddress.clear();
+        txtcontactno.clear();
+        txtcity.clear();
+        txtcourse.clear();
+        txtStatus.clear();
+    }
+
 
     @FXML
     void searchStudntOnAction(ActionEvent event) throws SQLException {
@@ -119,20 +151,26 @@ public class DetailFrameController {
         }else{
             String search = txtSearch.getText();
             System.out.println(search);
-            StudentDto studentDto = studentService.searchStudent(search, selectedtype);
+            studentDto= studentService.searchStudent(search, selectedtype);
             System.out.println(studentDto);
-            Student_CourseDto studentCourse = studentCourseService.findStudent_Course(studentDto.getStudent_id());
-
-
+            studentCourse = studentCourseService.findStudent_Course(studentDto.getStudent_id());
+            ArrayList<AttendanceDto> statusById = attendanceService.getStatusById(studentCourse.getStudent_id());
             if (studentDto == null){
                 new Alert(Alert.AlertType.WARNING,"this type Student not founded!").show();
             }else {
                 btnUpdate.setDisable(false);
                 btnDelete.setDisable(false);
                 fillData(studentDto,studentCourse);
+                fillTable(statusById);
             }
         }
 
+    }
+
+    private void fillTable(ArrayList<AttendanceDto> statusById) {
+        List<AttendaceDtm> collect = statusById.stream().map(attendanceDtm ->
+                new AttendaceDtm(attendanceDtm.getDate(), attendanceDtm.getStatus())).collect(Collectors.toList());
+        tblAttend.setItems(FXCollections.observableArrayList(collect));
     }
 
     private void fillData(StudentDto studentDto,Student_CourseDto studentCourseDto) {
@@ -149,12 +187,26 @@ public class DetailFrameController {
 
     @FXML
     void updatestudentOnAction(ActionEvent event) {
+        StudentDto studentDto1 = makeObject();
+        StudentDto studentDto2 = studentService.updateStudent(studentDto1);
+        if (studentDto2 == null){
+            new Alert(Alert.AlertType.ERROR,"This Student is Not Update!", ButtonType.OK).show();
+        }else {
+            new Alert(Alert.AlertType.CONFIRMATION,"This studnet Detail is Update Sucessfully!",ButtonType.CLOSE).show();
+        }
 
     }
+    private StudentDto makeObject() {
+        StudentDto s1 = new StudentDto(
+                txtStudid.getText(),
+                txtstudename.getText(),
+                txtcontactno.getText(),
+                txtaddress.getText(),
+                txtschool.getText(),
+                studentDto.getPhoto()
 
-    @FXML
-    void uploadimageOnAction(ActionEvent event) {
-
+        );
+        return s1;
     }
 
 }

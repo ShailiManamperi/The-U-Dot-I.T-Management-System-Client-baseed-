@@ -6,6 +6,7 @@ import lk.system.it.Dao.custom.AttendanceDao;
 import lk.system.it.Dao.custom.StudentDAO;
 import lk.system.it.Db.DBConnection;
 import lk.system.it.Dtm.MarkDtm;
+import lk.system.it.Dto.AttendanceDto;
 import lk.system.it.Dto.StudentDto;
 import lk.system.it.Dto.Student_CourseDto;
 import lk.system.it.Entity.Attendance;
@@ -90,6 +91,17 @@ public class AttendanceServiceImpl implements AttendanceService {
     public boolean searchIsAdded(LocalDate date) throws SQLException {
         boolean b = attendanceDao.searchIsAdded(date);
         return b;
+    }
+
+    @Override
+    public ArrayList<AttendanceDto> getStatusById(String pk) throws SQLException {
+        ArrayList<AttendanceDto> list = new ArrayList<>();
+        ArrayList<Attendance> statusById = attendanceDao.getStatusById(pk);
+        for (int i = 0; i<statusById.size(); i++){
+            Attendance attendance = statusById.get(i);
+            list.add(i,converter.fromAttend(attendance));
+        }
+        return list;
     }
 
 }

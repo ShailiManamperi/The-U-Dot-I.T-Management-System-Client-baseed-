@@ -24,4 +24,6 @@ public interface AttendanceDao extends SuperDAO {
     boolean searchInAttend(String id) throws SQLException;
 
     boolean searchIsAdded(LocalDate date) throws SQLException;
+
+    ArrayList<Attendance> getStatusById(String pk) throws SQLException;
 }

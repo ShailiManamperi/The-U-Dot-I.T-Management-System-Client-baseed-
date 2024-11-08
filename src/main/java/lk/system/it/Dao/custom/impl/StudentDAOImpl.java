@@ -43,12 +43,28 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public Student update(Student entity) throws ConstraintViolationException {
-        return null;
+        try {
+            String sql ="UPDATE Students SET  student_name = ?, contact_number =?, address = ?, school = ?, photo = ? WHERE student_id=?;";
+            if(DBUtil.executeUpdate(sql,entity.getStudent_name(),entity.getContact_number(),entity.getSchool(),
+                    entity.getPhoto(),entity.getStudent_id())){
+                return entity;
+            }
+            throw new SQLException("Failed to update the Student..");
+        } catch (SQLException e) {
+            throw new ConstraintViolationException(e);
+        }
     }
 
     @Override
     public boolean deleteByPk(String pk) throws ConstraintViolationException {
-        return false;
+        try {
+            if(!DBUtil.executeUpdate("DELETE FROM Students WHERE student_id=?",pk)){
+                return false;
+            }
+        } catch (SQLException e) {
+            throw new ConstraintViolationException(e);
+        }
+        return true;
     }
 
     @Override
