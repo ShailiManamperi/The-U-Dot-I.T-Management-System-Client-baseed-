@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 //import lk.ijse.shaili.system.Dto.UserDTO;
 //import lk.ijse.shaili.system.Service.ServiceFactory;
@@ -36,32 +37,73 @@ import java.time.LocalTime;
 
 public class LoginFrameController {
 
+//
+//
+//    public void LoginUserOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
+////        Navigation.navigate(Routes.ADMIN,pane);
+
+//    }
+//
+//    public void getPasswordHintOnMoueClicked(MouseEvent mouseEvent) {
+//        String userName = txtInUsername.getText();
+//        try {
+//            UserDTO search = userService.search(userName);
+//            lblHint.setText(search.getHint());
+//        } catch (SQLException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public void SHowPasswordOnMouseClicked(MouseEvent mouseEvent) {
+
+//    }
+//
+//    public void HidePasswordOnMOuseClicked(MouseEvent mouseEvent) {
+
+//    }
+//
+//    public void RegisterUserOnAction(ActionEvent actionEvent) {
+
+//    }
+//
+//    public void ShowRegisterFormOnAction(ActionEvent actionEvent) {
+//        TranslateTransition slide = new TranslateTransition();
+//        slide.setDuration(Duration.seconds(1.5));
+//        slide.setNode(slider);
+//
+//        slide.setToX(-480);
+//        slide.play();
+//        lblwelcome.setVisible(true);
+//        lblLogin.setVisible(true);
+//        btnlogin.setVisible(true);
+//        lblGreeting.setVisible(false);
+//        lblCreate.setVisible(false);
+//        btncreate.setVisible(false);
+//    }
+//
+//    public void ShowLoginFormOnAction(ActionEvent actionEvent) {
+//        TranslateTransition slide = new TranslateTransition();
+//        slide.setDuration(Duration.seconds(1.5));
+//        slide.setNode(slider);
+//
+//        slide.setToX(0);
+//        slide.play();
+//        lblwelcome.setVisible(false);
+//        lblLogin.setVisible(false);
+//        btnlogin.setVisible(false);
+//        lblGreeting.setVisible(true);
+//        lblCreate.setVisible(true);
+//        btncreate.setVisible(true);
+//    }
+
     @FXML
     private AnchorPane pane;
 
     @FXML
-    private JFXTextField txtInUsername;
+    private AnchorPane Signupframe;
 
     @FXML
-    private JFXPasswordField txtInPassword;
-
-    @FXML
-    private JFXButton btnLogIn;
-
-    @FXML
-    private Label lblForget;
-
-    @FXML
-    private Label lblHint;
-
-    @FXML
-    private JFXTextField txtShowPassword;
-
-    @FXML
-    private ImageView imgShowPassword;
-
-    @FXML
-    private ImageView imgHideEye;
+    private JFXTextField txtUpUsername;
 
     @FXML
     private JFXTextField txtDisplayname;
@@ -73,48 +115,50 @@ public class LoginFrameController {
     private JFXTextField txtPsHint;
 
     @FXML
-    private JFXButton btnRegister;
-
-    @FXML
-    private JFXTextField txtUpUsername;
-
-    @FXML
-    private AnchorPane slider;
-
-    @FXML
-    private Label lblGreeting;
-
-    @FXML
-    private Label lblwelcome;
-
-    @FXML
-    private Label lblLogin;
-
-    @FXML
-    private Label lblCreate;
-
-    @FXML
     private JFXButton btncreate;
+
+    @FXML
+    private Text txtLogin;
+
+    @FXML
+    private AnchorPane SigninFrame;
 
     @FXML
     private JFXButton btnlogin;
 
+    @FXML
+    private Text txtCreate;
+
+    @FXML
+    private JFXTextField txtInUsername;
+
+    @FXML
+    private JFXTextField txtShowPassword;
+
+    @FXML
+    private JFXPasswordField txtInPassword;
+
+    @FXML
+    private ImageView imgHideEye;
+
+    @FXML
+    private ImageView imgShowPassword;
+
+    @FXML
+    private Label lblGreeting;
     private UserService userService;
 
     public static UserDTO u1;
-
 
     public void initialize(){
         this.userService = ServiceFactory.getInstance().getService(ServiceTypes.USER);
         setWelcome();
         imgHideEye.setVisible(false);
         txtShowPassword.setVisible(false);
-        lblwelcome.setVisible(false);
-        lblLogin.setVisible(false);
-        btnlogin.setVisible(false);
-
+        SigninFrame.setVisible(true);
+        Signupframe.setVisible(false);
+//
     }
-
     public void setWelcome() {
         Timeline time = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             LocalTime currentTime = LocalTime.now();
@@ -132,13 +176,22 @@ public class LoginFrameController {
         time.play();
     }
 
+    @FXML
+    void HidePasswordOnMOuseClicked(MouseEvent event) {
+        String password = txtShowPassword.getText();
+        txtInPassword.setVisible(true);
+        txtShowPassword.setVisible(false);
+        txtInPassword.setText(password);
+        imgShowPassword.setVisible(true);
+        imgHideEye.setVisible(false);
 
-    public void LoginUserOnAction(ActionEvent actionEvent) throws IOException, SQLException, ClassNotFoundException {
-//        Navigation.navigate(Routes.ADMIN,pane);
+    }
+
+    @FXML
+    void LoginUserOnAction(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
         String uname = txtInUsername.getText();
         String password = txtInPassword.getText();
         UserDTO search = userService.search(uname);
-//        String type = search.getType();
 
         String ps = search.getPassword();
         String verification = search.getVerification();
@@ -157,41 +210,14 @@ public class LoginFrameController {
             new Alert(Alert.AlertType.ERROR,"Enter Password is wrong! please re-enter it").show();
         }
 
+
     }
 
-    public void getPasswordHintOnMoueClicked(MouseEvent mouseEvent) {
-        String userName = txtInUsername.getText();
-        try {
-            UserDTO search = userService.search(userName);
-            lblHint.setText(search.getHint());
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void SHowPasswordOnMouseClicked(MouseEvent mouseEvent) {
-        String password = txtInPassword.getText();
-        txtShowPassword.setVisible(true);
-        txtInPassword.setVisible(false);
-        txtShowPassword.setText(password);
-        imgHideEye.setVisible(true);
-        imgShowPassword.setVisible(false);
-    }
-
-    public void HidePasswordOnMOuseClicked(MouseEvent mouseEvent) {
-        String password = txtShowPassword.getText();
-        txtInPassword.setVisible(true);
-        txtShowPassword.setVisible(false);
-        txtInPassword.setText(password);
-        imgShowPassword.setVisible(true);
-        imgHideEye.setVisible(false);
-    }
-
-    public void RegisterUserOnAction(ActionEvent actionEvent) {
+    @FXML
+    void RegisterUserOnAction(ActionEvent event) {
         String ps = txtUpPassword.getText();
         String uname = txtUpUsername.getText();
         String hint = txtPsHint.getText();
-//        String type = (String) cmbUserType.getValue();
         String dis_name = txtDisplayname.getText();
         String verification = "No";
         if (ps.length() > 8){
@@ -215,34 +241,26 @@ public class LoginFrameController {
         }
     }
 
-    public void ShowRegisterFormOnAction(ActionEvent actionEvent) {
-        TranslateTransition slide = new TranslateTransition();
-        slide.setDuration(Duration.seconds(1.5));
-        slide.setNode(slider);
-
-        slide.setToX(-480);
-        slide.play();
-        lblwelcome.setVisible(true);
-        lblLogin.setVisible(true);
-        btnlogin.setVisible(true);
-        lblGreeting.setVisible(false);
-        lblCreate.setVisible(false);
-        btncreate.setVisible(false);
+    @FXML
+    void SHowPasswordOnMouseClicked(MouseEvent event) {
+        String password = txtInPassword.getText();
+        txtShowPassword.setVisible(true);
+        txtInPassword.setVisible(false);
+        txtShowPassword.setText(password);
+        imgHideEye.setVisible(true);
+        imgShowPassword.setVisible(false);
     }
 
-    public void ShowLoginFormOnAction(ActionEvent actionEvent) {
-        TranslateTransition slide = new TranslateTransition();
-        slide.setDuration(Duration.seconds(1.5));
-        slide.setNode(slider);
+    @FXML
+    void showCreatePaneOnAction(MouseEvent event) {
+        SigninFrame.setVisible(false);
+        Signupframe.setVisible(true);
+    }
 
-        slide.setToX(0);
-        slide.play();
-        lblwelcome.setVisible(false);
-        lblLogin.setVisible(false);
-        btnlogin.setVisible(false);
-        lblGreeting.setVisible(true);
-        lblCreate.setVisible(true);
-        btncreate.setVisible(true);
+    @FXML
+    void showLoginPaneOnAction(MouseEvent event) {
+        SigninFrame.setVisible(true);
+        Signupframe.setVisible(false);
     }
 }
 

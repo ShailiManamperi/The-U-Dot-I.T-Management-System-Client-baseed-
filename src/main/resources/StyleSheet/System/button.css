@@ -1,21 +1,15 @@
 #btnUpdate,#btncalculate{
-//-fx-background-color: #50EF8F;
     -fx-background-color: linear-gradient(from 0% 10% to 95% 100% ,#707075, #fafafa, #707075);
 }#btnUpdate:hover,#btncalculate:hover{
- //-fx-background-color: #50EF8F;
      -fx-background-color: linear-gradient(from 0% 10% to 95% 100% ,#646468, #fafafa, #646468);
 }#btnUpdate:pressed,#btncalculate:pressed{
-  //-fx-background-color: #50EF8F;
       -fx-background-color: linear-gradient(from 0% 10% to 95% 100% ,#57575b, #fafafa, #57575b);
 }
 #btnAdd{
-   //-fx-background-color: #50EF8F;
        -fx-background-color: linear-gradient(from 0% 10% to 95% 100% ,#707075, #fafafa, #707075);
 }#btnAdd:hover{
-    //-fx-background-color: #50EF8F;
         -fx-background-color: linear-gradient(from 0% 10% to 95% 100% ,#646468, #fafafa, #646468);
 }#btnAdd:pressed{
-    //-fx-background-color: #50EF8F;
          -fx-background-color: linear-gradient(from 0% 10% to 95% 100% ,#57575b, #fafafa, #57575b);
  }
 #btnDelete,#btnfinish{
@@ -26,13 +20,10 @@
       -fx-background-color: linear-gradient(from 0% 10% to 95% 100% ,#57575b, #ffffff, #57575b);
   }
 #btnClear,#btnBill{
-//-fx-background-color: #F8EA6D;
     -fx-background-color: linear-gradient(from 0% 10% to 95% 100% ,#707075, #ffffff, #707075);
 }#btnClear:hover,#btnBill:hover{
- //-fx-background-color: #F8EA6D;
      -fx-background-color: linear-gradient(from 0% 10% to 95% 100% ,#646468, #ffffff, #646468);
  }#btnClear:pressed,#btnBill:pressed{
-  //-fx-background-color: #F8EA6D;
       -fx-background-color: linear-gradient(from 0% 10% to 95% 100% ,#57575b, #ffffff, #57575b);
   }
 

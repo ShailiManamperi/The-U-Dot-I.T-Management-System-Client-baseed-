@@ -33,7 +33,7 @@ CREATE TABLE Attend (
         			ON DELETE CASCADE ON UPDATE CASCADE
 );
 CREATE TABLE IF NOT EXISTS User(
-	user_name VARCHAR(10),
+	user_name VARCHAR(20),
 	password VARCHAR(20),
 	verification VARCHAR(10),
 	hint VARCHAR(20),

@@ -13,20 +13,38 @@
     -fx-background-color: linear-gradient(from 0% 10% to 95% 100%,#8a8a8f, #ffffff, #8a8a8f);    -fx-background-radius: 50;
     -fx-border-radius: 50;
 }
-#btncreate,#btnlogin{
-    -fx-background-color: linear-gradient(from 0% 50% to 75% 100% , #ffffff, #707075,  #ffffff);
+/* Normal state */
+#btncreate, #btnlogin {
+    -fx-background-color: linear-gradient(from 0% 50% to 75% 100%, #007BFF, #FF5733); /* Blue to Red gradient */
     -fx-border-width: 1px;
-    -fx-border-color: #ecf0f1;
+    -fx-border-color: #ffffff;
     -fx-border-radius: 15px;
     -fx-background-radius: 15px;
-    -fx-text-fill: #27374D;
-
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
 }
-#btncreate:hover,#btnlogin:hover{
-    -fx-background-color: linear-gradient(from 0% 50% to 75% 100% ,#ffffff, #a4a4a8, #ffffff);    -fx-border-width: 1px;
+
+/* Hover state */
+#btncreate:hover, #btnlogin:hover {
+    -fx-background-color: linear-gradient(from 0% 50% to 75% 100%, #0056b3, #c70039); /* Darker blue to darker red */
+    -fx-border-width: 1px;
     -fx-border-radius: 15px;
     -fx-background-radius: 15px;
-    -fx-border-color: #ecf0f1;
-    -fx-text-fill: #34495e;
-
+    -fx-border-color: #ffffff;
+    -fx-text-fill: #f1f1f1; /* Slightly lighter white for hover effect */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.15), 10, 0, 0, 2);
 }
+
+/* Pressed state */
+#btncreate:pressed, #btnlogin:pressed {
+    -fx-background-color: linear-gradient(from 0% 50% to 75% 100%, #003d73, #900c3f); /* Even darker shades */
+    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-border-color: #ffffff;
+    -fx-text-fill: #eaeaea; /* Softer white */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+}
+

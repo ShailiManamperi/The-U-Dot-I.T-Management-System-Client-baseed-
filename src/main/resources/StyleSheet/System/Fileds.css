@@ -1,8 +1,54 @@
-.text-field{
-    -fx-text-fill: #13334c;
-    -fx-text-alignment: CENTER;
-    -fx-prompt-text-fill: #13334c;
+.text-field {
+    -fx-text-fill: #13334c; /* Dark blue for text */
+    -fx-text-alignment: center;
+    -fx-prompt-text-fill: #707070; /* Subtle gray for prompt text */
+    -fx-background-color: linear-gradient(from 0% 50% to 75% 100%, #ffffff, #e6e6e6); /* Light gradient background */
+    -fx-border-color: #007BFF; /* Blue border */
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
 }
+
+/* Focused state */
+.text-field:focused {
+    -fx-border-color: #FF5733; /* Switch to red border when focused */
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 87, 51, 0.5), 5, 0, 0, 2); /* Subtle red glow */
+}
+
+/* Disabled state */
+.text-field:disabled {
+    -fx-background-color: #f4f4f4; /* Light gray background */
+    -fx-border-color: #cccccc; /* Gray border */
+    -fx-text-fill: #a1a1a1; /* Dimmed text color */
+    -fx-prompt-text-fill: #a1a1a1; /* Dimmed prompt text color */
+}
+
+/*.jfx-text-field {*/
+/*    -fx-text-fill: #13334c; !* Dark blue text *!*/
+/*    -fx-prompt-text-fill: #707070; !* Subtle gray for prompt text *!*/
+/*    -fx-background-color: transparent; !* Transparent background *!*/
+/*    -jfx-focus-color: #FF5733; !* Red focus underline *!*/
+/*    -jfx-unfocus-color: #007BFF; !* Blue underline when unfocused *!*/
+/*    -fx-font-size: 14px; !* Text size *!*/
+/*    -fx-padding: 0 5 0 5; !* Padding for better spacing *!*/
+/*}*/
+
+/*!* Hover effect for JFXTextField *!*/
+/*.jfx-text-field:hover {*/
+/*    -jfx-unfocus-color: #FF5733; !* Red underline on hover *!*/
+/*}*/
+
+/*!* Disabled state *!*/
+/*.jfx-text-field:disabled {*/
+/*    -fx-opacity: 0.6; !* Dimmed look *!*/
+/*    -jfx-unfocus-color: #cccccc; !* Gray underline *!*/
+/*    -fx-text-fill: #a1a1a1; !* Dimmed text *!*/
+/*    -fx-prompt-text-fill: #a1a1a1; !* Dimmed prompt text *!*/
+/*}*/
+
 .combo-box .list-cell
 {
     -fx-background: rgba(255, 255, 255, 0);
