@@ -141,12 +141,15 @@ public class AttendanceFrameController {
 
     @FXML
     void loadAllStudentOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+        String city = cmbcities.getSelectionModel().getSelectedItem();
+        System.out.println(city);
         boolean b1 = attendanceService.searchIsAdded(LocalDate.now());
+        System.out.println(b1);
         if (b1){
             loadAllAttend();
         }else {
-            String city = cmbcities.getSelectionModel().getSelectedItem();
             ArrayList<Student_CourseDto> studentByCity = studentCourseService.findStudentByCity(city);
+            System.out.println(studentByCity);
             attendanceService.markAllAbsent(studentByCity);
             loadAllAttend();
         }

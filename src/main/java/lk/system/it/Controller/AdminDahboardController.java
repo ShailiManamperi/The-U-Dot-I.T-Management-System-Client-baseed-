@@ -15,16 +15,7 @@ import java.util.Map;
 public class AdminDahboardController {
 
     @FXML
-    private AnchorPane frame;
-
-    @FXML
-    private AnchorPane chartPane;
-
-    @FXML
     private BarChart<String, Integer> bargraph1;
-
-    @FXML
-    private AnchorPane chartPane1;
 
     @FXML
     private BarChart<String, Integer> bargraph2;
@@ -40,16 +31,11 @@ public class AdminDahboardController {
         // Retrieve attendance data by city and date from the AttendanceService
         Map<String, Map<LocalDate, Integer>> dailyAttendanceByCity = attendanceService.getDailyAttendanceByCity();
         String[] cities = dailyAttendanceByCity.keySet().toArray(new String[0]);
-//        System.out.println(cities[0]);
-//        System.out.println(dailyAttendanceByCity.get(cities[0]));
-//        System.out.println(dailyAttendanceByCity.size());
-//        System.out.println(dailyAttendanceByCity);
         // Assuming we have two cities, we’ll load data for each into the respective BarChart
         if (dailyAttendanceByCity.size() >= 2) {
             System.out.println(dailyAttendanceByCity); // Debug output to verify data
 
-            // Extracting first two cities and their attendance data
-            //String[] cities = dailyAttendanceByCity.keySet().toArray(new String[0]);
+            // Extracting first two cities and their attendance date
             loadCityAttendanceData(cities[0], dailyAttendanceByCity.get(cities[0]), bargraph1);
             loadCityAttendanceData(cities[1], dailyAttendanceByCity.get(cities[1]), bargraph2);
         } else {
@@ -60,20 +46,17 @@ public class AdminDahboardController {
     private void loadCityAttendanceData(String city, Map<LocalDate, Integer> attendanceData, BarChart<String, Integer> barChart) {
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
         series.setName("Attendance for " + city);
-
         // Loop through attendance data to populate the series
         for (Map.Entry<LocalDate, Integer> entry : attendanceData.entrySet()) {
             String date = entry.getKey().toString();  // Converting LocalDate to String for x-axis labels
             Integer count = entry.getValue();
             System.out.println(date + " "+ count);
             // Adding data for each date
-            //series.getData().add(new XYChart.Data<>(date, count));
             series.getData().add(new XYChart.Data(date, count));
         }
 
         // Clear any existing data and add the new series to the BarChart
         barChart.getData().clear();
         barChart.getData().add(series);
-        //barChart.getData().addAll(series);
     }
 }

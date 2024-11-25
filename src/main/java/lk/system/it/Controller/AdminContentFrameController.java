@@ -117,7 +117,7 @@ public class AdminContentFrameController {
     }
 
     public void showDahboardOnAction(ActionEvent actionEvent) throws IOException {
-        Navigation.navigate(Routes.AHOME,pane);
+        Navigation.navigate(Routes.ADMIN,pane);
     }
 
     public void showStudentFrameOnAction(ActionEvent actionEvent) throws IOException {
